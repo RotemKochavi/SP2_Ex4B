@@ -1,39 +1,20 @@
 #pragma once
 
 #include "Character.hpp"
+
 using namespace std;
 namespace ariel
 {
 	class Ninja : public Character
 	{
-		protected:
-			
+		private:
 			int _speed;
 
 		public:
-			
-			Ninja(string name, Point location, int health_points, int speed);
-			void move(Character *other);
-			void slash(Character *other);
+			Ninja(const string &_name, const Point &_location, int _health, int _speed);
+			void move(Character *enemy);
+			void slash(Character *enemy);
 			string print() const override;
-	};
-
-    class YoungNinja : public virtual Ninja{
-		
-        public:
-			 YoungNinja(string name, Point location);
-	};
-
-	class TrainedNinja : public virtual Ninja{
-		
-        public:	
-			 TrainedNinja(string name, Point location);
-	};
-
-	class OldNinja : public virtual Ninja{
-		
-        public:	
-			 OldNinja(string name, Point location);
 	};
 
 }
