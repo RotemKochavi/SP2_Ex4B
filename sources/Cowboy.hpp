@@ -4,15 +4,15 @@
 
 namespace ariel
 {
-	class Cowboy : public Character
-	{
+	class Cowboy : public Character {
+		
 		private:
 			
 			int _bulletsCount;
 
 		public:
 		
-			Cowboy(const string &name, const Point &location);
+			Cowboy(const string &_name, const Point &_location);
 			void shoot(Character *enemy);
 			bool hasBoolets() const;
 			void reload();

@@ -2,11 +2,12 @@
 #include "Team2.hpp"
 
 using namespace std;
-namespace ariel{
 
+namespace ariel
+{
     Team2::Team2(Character *_leader) : Team(_leader) {}
 
-    void Team2::attack(Team *other){
+    void Team2::attack(Team *other) {
 
         if (other == nullptr)
             throw invalid_argument("There is no other team.\n");
@@ -17,9 +18,9 @@ namespace ariel{
         if(other->stillAlive() == 0)
 		    throw runtime_error("Other team  is dead. GAME OVER.\n");
 
-        if (!_leader->isAlive()){ //Choose new leader
+        if (!_leader->isAlive()) //Choose new leader
             setLeader();
-        }
+    
 
         Character *victim = nullptr;
 
@@ -32,30 +33,31 @@ namespace ariel{
             if (fighter != nullptr && fighter->isAlive()) {
                 
                 if (victim != nullptr && victim->isAlive()) {
-                    if(typeid(Cowboy) == typeid(*fighter)){     // fighter = Cowboy
+
+                    if(typeid(Cowboy) == typeid(*fighter)) {     // fighter = Cowboy
                         Cowboy *attacker = dynamic_cast<Cowboy*>(fighter);
-                        if(attacker->hasBoolets()){
+                        
+                        if(attacker->hasBoolets())
                             attacker->shoot(victim);
-                        }
-                        else{
+                        
+                        else
                             attacker->reload();
-                        }
                     }
-                    else{
+
+                    else {
                         Ninja *attacker = dynamic_cast<Ninja*>(fighter);
-                        if(attacker->distance(victim) < 1){
+
+                        if(attacker->distance(victim) < 1)
                             attacker->slash(victim);
-                        }
+                        
                         else
                             attacker->move(victim);
-                    
                     }
                 }
                 
                 else
-                {
                     return;
-                }
+
             }
         }
     }
@@ -63,8 +65,8 @@ namespace ariel{
     void Team2::print() const {
     	cout << "Team Leader: " << getLeader()->getName() << endl;
 
-    	for (Character *member : getTeam())
-    		cout << member->print() << endl;
+    	for (Character *fighter : getTeam())
+    		cout << fighter ->print() << endl;
     }
 }
 

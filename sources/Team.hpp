@@ -24,34 +24,34 @@ const int MaxSizeOfTeam = 10;
 namespace ariel
 {
 
-    class Team
-    {
+    class Team {
 
-    protected:
-        std::vector<Character *> _team;
+        protected:
 
-        Character *_leader;
+            std::vector<Character *> _team;
+            Character *_leader;
 
-    public:
-        Team(Character *_leader);
+        public:
 
-        // destructor
-        virtual ~Team();
+            Team(Character *_leader);
 
-        Character *getLeader() const;
-        void setLeader();
+            virtual ~Team();
 
+            Character *getLeader() const;
+            
+            void setLeader();
 
-        const vector<Character *> &getTeam() const;
+            const vector<Character *> &getTeam() const;
 
-        void add(Character *player);
+            void add(Character *player);
 
-        virtual void attack(Team *other);
+            virtual void attack(Team *other);
 
-        int stillAlive() const;
+            int stillAlive() const;
 
-        virtual void print() const;
+            virtual void print() const;
 
-        Character *findClosest(const Team*);
+            Character *findClosest(const Team*);
+            
     };
 }

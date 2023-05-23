@@ -3,25 +3,20 @@
 
 namespace ariel
 {
-    Team::Team(Character *_leader) : _leader(_leader)
-    {
+    Team::Team(Character *_leader) : _leader(_leader) {
+
         if (_leader == nullptr)
             throw invalid_argument("Team leader cannot be null");
 
         this->add(_leader);
     }
 
-
-
-    
     Team::~Team() {
         for (auto fighter : _team)
             delete fighter;
-
-        _team.clear();
     }
     
-    void Team::add(Character *player){
+    void Team::add(Character *player) {
         if (player == nullptr)
 		    throw invalid_argument("There is no player.");
 
@@ -36,7 +31,7 @@ namespace ariel
         player->setInTeam(true);
     }
 
-    void Team::attack(Team *other){
+    void Team::attack(Team *other) {
 
         if (other == nullptr)
             throw invalid_argument("There is no other team.\n");
@@ -47,74 +42,81 @@ namespace ariel
         if(other->stillAlive() == 0)
 		    throw runtime_error("Other team  is dead. GAME OVER.");
 
-        if (!_leader->isAlive()){ //Choose new leader
+        if (!_leader->isAlive()) //Choose new leader
             setLeader();
-        }
+
 
         Character *victim = nullptr;
 
         for (Character *fighter : _team) {
             if (other->stillAlive() > 0)
                 victim = findClosest(other);
+
             else
                 return;
+
             if (fighter != nullptr && fighter->isAlive()) {
                 
                 if (victim != nullptr && victim->isAlive()) {
+
                     if(typeid(Cowboy) == typeid(*fighter)){
+
                         Cowboy *attacker = dynamic_cast<Cowboy*>(fighter);
-                        if(attacker->hasBoolets()){
+
+                        if(attacker->hasBoolets())
                             attacker->shoot(victim);
-                        }
-                        else{
+                        
+                        else
                             attacker->reload();
-                        }
                     }
                 }
                 
                 else
-                {
                     return;
-                }
+
             }
         }
 
         for (Character *fighter : _team) {
+
             if (other->stillAlive() > 0)
                 victim = findClosest(other);
+
             else
                 return;
+
             if (fighter != nullptr && fighter->isAlive()) {
                 
                 if (victim != nullptr && victim->isAlive()) {
-                    if(typeid(Cowboy) != typeid(*fighter)){
+
+                    if(typeid(Cowboy) != typeid(*fighter)) {
                         Ninja *attacker = dynamic_cast<Ninja*>(fighter);
-                        if(attacker->distance(victim) < 1){
+
+                        if(attacker->distance(victim) < 1)
                             attacker->slash(victim);
-                        }
-                        else{
+                        
+                        else
                             attacker->move(victim);
-                        }
                     }
                 }
                 
                 else
-                {
                     return;
-                }
             }
         }
     }
 
-    Character* Team::findClosest(const Team* other)
-    {
+    Character* Team::findClosest(const Team* other) {
+
         Character *closest = nullptr;
         double min_distance = numeric_limits<double>::max();
 
-        for (Character *character : other->getTeam()){
-            if (character->isAlive() && character != nullptr){
+        for (Character *character : other->getTeam()) {
+
+            if (character->isAlive() && character != nullptr) {
                 double distance = _leader->distance(character);
-                if (distance <= min_distance){
+
+                if (distance <= min_distance) {
                     min_distance = distance;
                     closest = character;
                 }
@@ -153,8 +155,8 @@ namespace ariel
         cout << "Team Leader: " << _leader->getName() << endl;
         cout << "Member team : " << endl;
         
-        for (auto fighter : _team)
-            fighter->print();;
+        for (Character *fighter : _team)
+            fighter->print();
     }
 
 }

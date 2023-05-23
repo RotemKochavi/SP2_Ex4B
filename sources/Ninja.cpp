@@ -4,10 +4,11 @@
 #include "Ninja.hpp"
 
 using namespace std;
-namespace ariel{
 
-	Ninja::Ninja(string _name, const Point &_location, int _health, int speed) :
-	Character(_name, _location, _health), _speed(speed) {}
+namespace ariel
+{
+
+	Ninja::Ninja(string _name, const Point &_location, int _health, int speed) : Character(_name, _location, _health), _speed(speed) {}
 
 	void Ninja::move(Character *enemy){
 		if (enemy == nullptr)

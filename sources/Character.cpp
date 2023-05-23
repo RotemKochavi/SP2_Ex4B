@@ -13,27 +13,6 @@ namespace ariel{
 
 	Character::Character(Character &&other) noexcept : _name(other._name), _location(other._location), _health(other._health), _inTeam(other._inTeam), _hit(other._hit) {}
 
-
-	Character& Character::operator=(const Character& other)
-	{
-		if (this != &other){
-			_health = other._health;
-			_name = other._name;
-		}
-
-		return *this;
-	}
-
-	Character& Character::operator=(Character&& other) noexcept{
-		if (this != &other){
-			_health = other._health;
-			_name = move(other._name);
-			other._health = 0;
-		}
-
-		return *this;
-	}
-
 	bool Character::isAlive() const{
 		return (_health > 0);
 	}
@@ -77,6 +56,26 @@ namespace ariel{
 
 	int Character::getHit() const{
 		return _hit;
+	}
+	
+// ********************************************************************//
+	Character& Character::operator=(const Character& other) {
+		if (this != &other){
+			_health = other._health;
+			_name = other._name;
+		}
+
+		return *this;
+	}
+
+	Character& Character::operator=(Character&& other) noexcept{
+		if (this != &other){
+			_health = other._health;
+			_name = move(other._name);
+			other._health = 0;
+		}
+
+		return *this;
 	}
 
 }

@@ -7,50 +7,51 @@ using namespace std;
 
 namespace ariel
 {
-    class Character
-    {
-    private:
-        string _name;
-        Point _location;
-        int _health;
-        int _hit;
-        bool _inTeam = false;
+    class Character {
+        
+        private:
 
-    public:
-        Character(string _name, const Point &_location, int _health);
+            string _name;
+            Point _location;
+            int _health;
+            int _hit;
+            bool _inTeam = false;
 
-        Character(const Character &other);
+        public:
+            Character(string _name, const Point &_location, int _health);
 
-        Character(Character &&other) noexcept;
+            Character(const Character &other);
 
-        Character &operator=(const Character &other);
+            Character(Character &&other) noexcept;
 
-        Character &operator=(Character &&other) noexcept;
+            // virtual destructor
+            virtual ~Character() {}
 
-        // virtual destructor
-        virtual ~Character() {}
+            virtual string print() const = 0;
 
-        virtual string print() const = 0;
+            bool isAlive() const;
 
-        bool isAlive() const;
+            double distance(const Character *other) const;
 
-        double distance(const Character *other) const;
+            void hit(int hits);
 
-        void hit(int hits);
+            const string &getName() const;
+            
+            int getHealth() const;
 
-        const string &getName() const;
+            const Point &getLocation() const;
 
-        const Point &getLocation() const;
+            void setLocation(const Point &location);
 
-        void setLocation(const Point &location);
+            bool getInTeam() const;
 
-        int getHealth() const;
+            void setInTeam(bool status);
 
-        bool getInTeam() const;
+            int getHit() const;
 
-        void setInTeam(bool status);
+            Character &operator=(const Character &other);
 
-        int getHit() const;
+            Character &operator=(Character &&other) noexcept;
 
     };
 };
