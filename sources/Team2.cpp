@@ -6,7 +6,7 @@ namespace ariel{
 
     Team2::Team2(Character *_leader) : Team(_leader) {}
 
-    void Team::attack(Team *other){
+    void Team2::attack(Team *other){
 
         if (other == nullptr)
             throw invalid_argument("There is no other team.\n");
@@ -15,7 +15,7 @@ namespace ariel{
             throw runtime_error("Team is dead. GAME OVER.\n");
 
         if(other->stillAlive() == 0)
-		    throw runtime_error("Other team  is dead. GAME OVER.");
+		    throw runtime_error("Other team  is dead. GAME OVER.\n");
 
         if (!_leader->isAlive()){ //Choose new leader
             setLeader();
@@ -26,12 +26,13 @@ namespace ariel{
         for (Character *fighter : _team) {
             if (other->stillAlive() > 0)
                 victim = findClosest(other);
-            else
-                return;
+            
+            return;
+
             if (fighter != nullptr && fighter->isAlive()) {
                 
                 if (victim != nullptr && victim->isAlive()) {
-                    if(typeid(Cowboy) == typeid(*fighter)){
+                    if(typeid(Cowboy) == typeid(*fighter)){     // fighter = Cowboy
                         Cowboy *attacker = dynamic_cast<Cowboy*>(fighter);
                         if(attacker->hasBoolets()){
                             attacker->shoot(victim);

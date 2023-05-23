@@ -5,14 +5,12 @@
 
 namespace ariel
 {
-    class Team2 : public Team
-    {
+    class Team2 : public Team {
 
     public:
-        Team2(Character *leader);
-        ~Team2();
+        Team2(Character *);
         
-        void attack(Team *enemy) override;
+        void attack(Team *) override;
         void print() const override;
 
     };
