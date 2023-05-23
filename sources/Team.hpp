@@ -1,26 +1,57 @@
+#pragma once
+#include <cmath>
+#include <stdexcept>
+#include <numeric>
+#include <iostream>
 #include <vector>
+#include <string>
+#include <algorithm>
+#include <random>
+#include <chrono>
+#include <sstream>
+#include <memory>
+
 #include "Point.hpp"
-#include "Character.hpp"
-#include "Ninja.hpp"
 #include "Cowboy.hpp"
+#include "OldNinja.hpp"
+#include "YoungNinja.hpp"
+#include "TrainedNinja.hpp"
+#include "Character.hpp"
 
-namespace ariel {
-    class Team {
-    private:
-        Character* leader;
-        std::vector<Character*> warriors;
+const int MaxSizeOfTeam = 10;
+
+
+namespace ariel
+{
+
+    class Team
+    {
+
+    protected:
+        std::vector<Character *> _team;
+
+        Character *_leader;
+
     public:
-        Team(Character* character);
-        Team(const Team& other);
-        Team(Team&& other) noexcept;
-        ~Team();
+        Team(Character *_leader);
 
-        void add(Character* warrior);
-        void attack(Team* enemies);
-        int stillAlive();
-        void print();
+        // destructor
+        virtual ~Team();
 
-        Team& operator=(const Team& other);
-        Team& operator=(Team&& other) noexcept;
+        Character *getLeader() const;
+        void setLeader();
+
+
+        const vector<Character *> &getTeam() const;
+
+        void add(Character *player);
+
+        virtual void attack(Team *other);
+
+        int stillAlive() const;
+
+        virtual void print() const;
+
+        Character *findClosest(const Team*);
     };
 }

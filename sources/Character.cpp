@@ -6,7 +6,8 @@ using namespace std;
 
 namespace ariel{
 
-	Character::Character(const string &_name, const Point &_location, int _health) : _name(_name), _location(_location), _health(_health), _inTeam(false), _hit(0) {}
+	Character::Character(string name, const Point &location, int health) :
+	_name(name), _location(location), _health(health), _inTeam(false), _hit(0) {}
 
 	Character::Character(const Character &other) : _name(other._name), _location(other._location), _health(other._health), _inTeam(other._inTeam), _hit(other._hit) {}
 
@@ -15,8 +16,7 @@ namespace ariel{
 
 	Character& Character::operator=(const Character& other)
 	{
-		if (this != &other)
-		{
+		if (this != &other){
 			_health = other._health;
 			_name = other._name;
 		}
@@ -24,10 +24,8 @@ namespace ariel{
 		return *this;
 	}
 
-	Character& Character::operator=(Character&& other) noexcept
-	{
-		if (this != &other)
-		{
+	Character& Character::operator=(Character&& other) noexcept{
+		if (this != &other){
 			_health = other._health;
 			_name = move(other._name);
 			other._health = 0;

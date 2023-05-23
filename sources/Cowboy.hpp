@@ -14,7 +14,7 @@ namespace ariel
 		
 			Cowboy(const string &name, const Point &location);
 			void shoot(Character *enemy);
-			bool hasBullets() const;
+			bool hasBoolets() const;
 			void reload();
 			int getBulletsCount() const;
 			string print() const override;

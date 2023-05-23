@@ -1,3 +1,4 @@
+#pragma once
 #include "Point.hpp"
 #include <stdio.h>
 #include <string>
@@ -16,7 +17,7 @@ namespace ariel
         bool _inTeam = false;
 
     public:
-        Character(const string &_name, const Point &_location, int _health);
+        Character(string _name, const Point &_location, int _health);
 
         Character(const Character &other);
 
@@ -30,8 +31,6 @@ namespace ariel
         virtual ~Character() {}
 
         virtual string print() const = 0;
-
-        virtual void attack(Character *enemy) = 0;
 
         bool isAlive() const;
 

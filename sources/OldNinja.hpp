@@ -7,6 +7,7 @@ using namespace std;
 namespace ariel{
     class OldNinja : public Ninja{
 
-        OldNinja(string _name, const Point &_location);
+        public:
+            OldNinja(string _name, const Point &_location);
     };
 }

@@ -2,7 +2,6 @@
 
 #include "Character.hpp"
 
-using namespace std;
 namespace ariel
 {
 	class Ninja : public Character
@@ -11,10 +10,10 @@ namespace ariel
 			int _speed;
 
 		public:
-			Ninja(const string &_name, const Point &_location, int _health, int _speed);
+			Ninja(std::string _name, const Point &_location, int _health, int speed);
 			void move(Character *enemy);
 			void slash(Character *enemy);
-			string print() const override;
+			std::string print() const override;
 	};
 
 }

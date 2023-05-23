@@ -12,7 +12,7 @@ namespace ariel
 	void Cowboy::shoot(Character *enemy){
 
 		if (enemy == nullptr)
-			throw invalid_argument("There is no ther character\n");
+			throw invalid_argument("There is no other character\n");
 
 		else if (enemy == this)
 			throw runtime_error("Cannot shoot yourself\n");
@@ -33,7 +33,7 @@ namespace ariel
 			cout << "Run out of bullets\n" << endl;
 	}
 
-	bool Cowboy::hasBullets() const{
+	bool Cowboy::hasBoolets() const{
 		return (_bulletsCount > 0);
 	}
 
@@ -49,12 +49,12 @@ namespace ariel
 
 	string Cowboy::print() const{
 		if (isAlive())
-			return "Name: " + getName() + 
-					" --- Health: " + to_string(getHealth()) +
-					" --- Location: " + getLocation().print();
+			return "Cowboy name: " + getName() + 
+					" --- Cowboy health: " + to_string(getHealth()) +
+					" --- Cowboy location: " + getLocation().print();
 
-		return "Name: " + getName() + 
-				" --- Location: " + getLocation().print();
+		return "Cowboy name: " + getName() + 
+				" --- Cowboy location: " + getLocation().print();
 	}
 
 }
